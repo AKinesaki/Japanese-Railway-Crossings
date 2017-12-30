@@ -20,20 +20,12 @@ namespace JapaneseRailwayCrossings {
         /// </summary>
         internal enum StringKeys {
 			/// <summary>
-			/// ヘッダー
-			/// </summary>
-			HeaderText,
-			/// <summary>
 			/// スタイル
 			/// </summary>
 			s_default,
 			s_null,
 			s1_close,
 			s1_open,
-			/// <summary>
-			/// グローバル
-			/// </summary>
-			GlobalText,
 			/// <summary>
 			/// 道路種別
 			/// </summary>
@@ -45,13 +37,12 @@ namespace JapaneseRailwayCrossings {
 			WideRoadsText,
 			HighwaysText,
 			PedestrianRoadsText,
-			BusText,
-			MonorailText,
-			GrassText,
-			TreesText,
 			/// <summary>
-			/// オプションテキスト
+			/// テキスト
 			/// </summary>
+			HeaderText,
+			GlobalText,
+			RHTText,
 			OptionStyleText,
 			OptionEnableText
 		}
@@ -73,6 +64,7 @@ namespace JapaneseRailwayCrossings {
         private void initJa( Dictionary<StringKeys, string> dic ) {
 			dic.Add(StringKeys.HeaderText, "日本風踏切MODオプション - 変更はセーブデータの再読込後に適応されます。");
 			dic.Add(StringKeys.OptionStyleText, "スタイル");
+			dic.Add(StringKeys.RHTText, "右側通行");
 			dic.Add(StringKeys.s_default, "デフォルト");
 			dic.Add(StringKeys.s_null, "非表示");
 			dic.Add(StringKeys.s1_close, "下げ");
@@ -87,14 +79,11 @@ namespace JapaneseRailwayCrossings {
 			dic.Add(StringKeys.HighwaysText, "高速道路");
 			dic.Add(StringKeys.PedestrianRoadsText, "Pedestrian Roads");
 			dic.Add(StringKeys.OptionEnableText, "有効にする");
-			dic.Add(StringKeys.BusText, "[Beta]バスレーンのある道路(いくつかの道路を除く)");
-			dic.Add(StringKeys.MonorailText, "[Beta]モノレール軌道のある道路");
-			dic.Add(StringKeys.GrassText, "[Beta]芝生のある道路(分離帯付きの中道路を除く)");
-			dic.Add(StringKeys.TreesText, "[Beta]街路樹のある道路(分離帯付きの中道路を除く)");
 		}
         private void initEn( Dictionary<StringKeys, string> dic ) {
             dic.Add( StringKeys.HeaderText, "Japanese Railway Crossings Options - Changes will apply after reload savedata.");
 			dic.Add( StringKeys.OptionStyleText, "Style");
+			dic.Add( StringKeys.RHTText, "RHT support");
 			dic.Add( StringKeys.s_default, "Default");
 			dic.Add( StringKeys.s_null, "Invisible");
 			dic.Add( StringKeys.s1_close, "Close State");
@@ -109,10 +98,6 @@ namespace JapaneseRailwayCrossings {
 			dic.Add( StringKeys.HighwaysText, "Highways");
 			dic.Add( StringKeys.PedestrianRoadsText, "Pedestrian Roads");
 			dic.Add( StringKeys.OptionEnableText, "Enable");
-			dic.Add( StringKeys.BusText, "[Beta]Road with Bus Lanes(except some roads)");
-			dic.Add( StringKeys.MonorailText, "[Beta]Road with Monorail Track");
-			dic.Add( StringKeys.GrassText, "[Beta]Road with Grass(except for Medium Roads with median)");
-			dic.Add( StringKeys.TreesText, "[Beta]Road with Trees(except for Medium Roads with median)");
 		}
         /// <summary>
         /// デフォルト言語での文字列を取得します。

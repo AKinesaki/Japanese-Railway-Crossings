@@ -162,10 +162,10 @@ namespace JapaneseRailwayCrossings
 										{
 											case roadWidth.small:
 												
-												if (road.name.Contains("KT01"))
+												if (road.name.Contains("KT01") && road.name.Contains("2L"))
 												{
-													if (laneProp.m_position.x > 0) { laneProp.m_position.x = -2; }
-													else { laneProp.m_position.x = 2; }
+													if (laneProp.m_position.x > 0) { laneProp.m_position.x = -2.1f; }
+													else { laneProp.m_position.x = 2.1f; }
 												}
 												else if (road.name.Contains("Zonable Promenade"))
 												{
@@ -176,19 +176,35 @@ namespace JapaneseRailwayCrossings
 													road.name.Contains("Small Avenue") ||
 													road.name.Contains("AsymRoadL1R3") ||
 													road.name.Contains("Oneway4L") ||
-													road.name.Contains("OneWay3L")
+													road.name.Contains("OneWay3L") ||
+													road.name.Contains("Oneway with bicycle lanes")
 												)
 												{
-													if (laneProp.m_position.x > 0) { laneProp.m_position.x = -0.6f; }
-													else { laneProp.m_position.x = 0.6f; }
+													if (laneProp.m_position.x > 0) { laneProp.m_position.x = -0.5f; }
+													else { laneProp.m_position.x = 0.5f; }
+													//0.65
+												}
+												else if (
+													road.name.Contains("Asymmetrical Three Lane Road")
+												)
+												{
+													if (laneProp.m_position.x > 0) { laneProp.m_position.x = -1.5f; }
+													else { laneProp.m_position.x = 1.5f; }
+												}
+												else if (
+													(road.name.Contains("KT01") && road.name.Contains("2+1"))
+												)
+												{
+													if (laneProp.m_position.x > 0) { laneProp.m_position.x = -1.2f; }
+													else { laneProp.m_position.x = 1.2f; }
 												}
 												else
 												{
 													if (laneProp.m_position.x > 0) { laneProp.m_position.x = -1; }
 													else { laneProp.m_position.x = 1; }
 												}
-												
-												if(style == style.s1_close)
+
+												if (style == style.s1_close)
 												{
 													laneProp.m_finalProp = JPRC_s1_small_close;
 													laneProp.m_prop = JPRC_s1_small_close;
@@ -197,6 +213,12 @@ namespace JapaneseRailwayCrossings
 												{
 													laneProp.m_finalProp = JPRC_s1_small_open;
 													laneProp.m_prop = JPRC_s1_small_open;
+												}
+
+												if (config.RHT)
+												{
+													if (laneProp.m_position.x > 0) { laneProp.m_position.x = laneProp.m_position.x - 16; }
+													else { laneProp.m_position.x = laneProp.m_position.x + 16; }
 												}
 												break;
 
@@ -214,6 +236,12 @@ namespace JapaneseRailwayCrossings
 													laneProp.m_finalProp = JPRC_s1_tiny_open;
 													laneProp.m_prop = JPRC_s1_tiny_open;
 												}
+
+												if (config.RHT)
+												{
+													if (laneProp.m_position.x > 0) { laneProp.m_position.x = laneProp.m_position.x + 10; }
+													else { laneProp.m_position.x = laneProp.m_position.x - 10; }
+												}
 												break;
 
 											case roadWidth.tiny8:
@@ -221,6 +249,11 @@ namespace JapaneseRailwayCrossings
 												{
 													if (laneProp.m_position.x > 0) { laneProp.m_position.x = -4; }
 													else { laneProp.m_position.x = 4; }
+												}
+												else if (road.name.Contains("One-Lane Oneway"))
+												{
+													if (laneProp.m_position.x > 0) { laneProp.m_position.x = 1.2f; }
+													else { laneProp.m_position.x = -1.2f; }
 												}
 												else
 												{
@@ -238,14 +271,39 @@ namespace JapaneseRailwayCrossings
 													laneProp.m_finalProp = JPRC_s1_tiny8_open;
 													laneProp.m_prop = JPRC_s1_tiny8_open;
 												}
+
+												if (config.RHT)
+												{
+													if (laneProp.m_position.x > 0) { laneProp.m_position.x = laneProp.m_position.x - 8; }
+													else { laneProp.m_position.x = laneProp.m_position.x + 8; }
+												}
 												break;
 
 											case roadWidth.large:
 
-												if(road.name.Contains("Eight-Lane Avenue"))
+												if(
+													road.name.Contains("Eight-Lane Avenue") ||
+													road.name.Contains("Six-Lane Avenue Median")
+												)
 												{
 													if (laneProp.m_position.x > 0) { laneProp.m_position.x = -1; }
 													else { laneProp.m_position.x = 1; }
+												}
+												else if(
+													road.name.Contains("Avenue Large With Grass")
+												)
+												{
+													if (laneProp.m_position.x > 0) { laneProp.m_position.x = -1.2f; }
+													else { laneProp.m_position.x = 1.2f; }
+												}
+												else if(
+													road.name.Contains("AsymAvenueL2R4") ||
+													(road.name.Contains("Large") && road.name.Contains("Grass")) ||
+													(road.name.Contains("Large") && road.name.Contains("Trees"))
+												)
+												{
+													if (laneProp.m_position.x > 0) { laneProp.m_position.x = -1.5f; }
+													else { laneProp.m_position.x = 1.5f; }
 												}
 												else
 												{
@@ -263,11 +321,25 @@ namespace JapaneseRailwayCrossings
 													laneProp.m_finalProp = JPRC_s1_large_open;
 													laneProp.m_prop = JPRC_s1_large_open;
 												}
+
+												if (config.RHT)
+												{
+													if (laneProp.m_position.x > 0) { laneProp.m_position.x = laneProp.m_position.x - 32; }
+													else { laneProp.m_position.x = laneProp.m_position.x + 32; }
+												}
 												break;
 
 											case roadWidth.large24:
-												if (laneProp.m_position.x > 0) { laneProp.m_position.x = -1.7f; }
-												else { laneProp.m_position.x = 1.7f; }
+												if (road.name.Contains("KT02"))
+												{
+													if (laneProp.m_position.x > 0) { laneProp.m_position.x = -1.2f; }
+													else { laneProp.m_position.x = 1.2f; }
+												}
+												else
+												{
+													if (laneProp.m_position.x > 0) { laneProp.m_position.x = -1.7f; }
+													else { laneProp.m_position.x = 1.7f; }
+												}
 
 												if (style == style.s1_close)
 												{
@@ -278,6 +350,12 @@ namespace JapaneseRailwayCrossings
 												{
 													laneProp.m_finalProp = JPRC_s1_large24_open;
 													laneProp.m_prop = JPRC_s1_large24_open;
+												}
+
+												if (config.RHT)
+												{
+													if (laneProp.m_position.x > 0) { laneProp.m_position.x = laneProp.m_position.x - 24; }
+													else { laneProp.m_position.x = laneProp.m_position.x + 24; }
 												}
 												break;
 
@@ -294,6 +372,12 @@ namespace JapaneseRailwayCrossings
 												{
 													laneProp.m_finalProp = JPRC_s1_large38_open;
 													laneProp.m_prop = JPRC_s1_large38_open;
+												}
+
+												if (config.RHT)
+												{
+													if (laneProp.m_position.x > 0) { laneProp.m_position.x = laneProp.m_position.x - 38; }
+													else { laneProp.m_position.x = laneProp.m_position.x + 38; }
 												}
 												break;
 										}
@@ -404,7 +488,8 @@ namespace JapaneseRailwayCrossings
 				name.Contains("Small Busway") ||
 				name.Contains("Harbor Road") ||
 				name.Contains("Tram Depot Road") ||
-				name.Contains("Small Road")
+				name.Contains("Small Road") ||
+				name.Contains("Oneway with bicycle lanes")
 			) {
 				return new StyleParams()
 				{

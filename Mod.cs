@@ -39,6 +39,7 @@ namespace JapaneseRailwayCrossings
 
 			// オプションページ
 			UIHelperBase GroupHeader = helper.AddGroup(globalText.GetString(displayLang, Globalization.StringKeys.HeaderText));
+			GroupHeader.AddCheckbox(globalText.GetString(displayLang, Globalization.StringKeys.RHTText), config.RHT, IsRHT);
 
 			UIHelperBase GroupGlobal = helper.AddGroup(globalText.GetString(displayLang, Globalization.StringKeys.GlobalText));
 			GroupGlobal.AddDropdown(style, styles2, config.Global, Global);
@@ -66,6 +67,14 @@ namespace JapaneseRailwayCrossings
 
 			UIHelperBase GroupPedestrianRoads = helper.AddGroup(globalText.GetString(displayLang, Globalization.StringKeys.PedestrianRoadsText));
 			GroupPedestrianRoads.AddDropdown(style, styles, config.PedestrianRoads, PedestrianRoads);
+		}
+
+		private void IsRHT(bool b)
+		{
+			var config = Configuration<JapaneseRailwayCrossingsConfiguration>.Load();
+
+			config.RHT = b;
+			Configuration<JapaneseRailwayCrossingsConfiguration>.Save();
 		}
 
 		private void Global(int i)
@@ -144,6 +153,7 @@ namespace JapaneseRailwayCrossings
 	[ConfigurationPath("JapaneseRailwayCrossings.xml")]
 	public class JapaneseRailwayCrossingsConfiguration
 	{
+		public bool RHT { get; set; } = false;
 		public int Global { get; set; } = 0;
 		public int TinyRoads { get; set; } = 2;
 		public int PedestrianRoads { get; set; } = 2;

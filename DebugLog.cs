@@ -46,11 +46,13 @@ namespace JapaneseRailwayCrossings
 		/// </summary>
 		public static void OutputRegisteredNetInfos()
 		{
-			System.IO.StreamWriter sw = new System.IO.StreamWriter("AllNetInfo.txt", false, System.Text.Encoding.GetEncoding("utf-8"));
+			System.IO.StreamWriter sw = new System.IO.StreamWriter("AllNetInfos.txt", false, System.Text.Encoding.GetEncoding("utf-8"));
 
-			foreach(var s in JPRC.GetRegisteredNetInfos())
+			NetInfo[] ni = JPRC.GetRegisteredNetInfos();
+
+			foreach (var s in ni)
 			{
-				sw.WriteLine(s);
+				sw.WriteLine(s.name);
 			}
 
 			sw.Close();
